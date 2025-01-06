@@ -1,0 +1,72 @@
+.header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.headerWrap {
+  display: flex;
+}
+
+.headerLink {
+  display: flex;
+  align-items: center;
+}
+
+.headerTitle {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  color: #121417;
+  margin-left: 8px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  margin-left: 390px;
+}
+
+.headerList {
+  display: flex;
+  align-items: center;
+}
+
+.headerList > a {
+  color: #121417;
+}
+
+.headerList > .first {
+  margin-right: 28px;
+}
+
+.headerList > .second {
+  margin-right: 16px;
+}
+
+.headerList:not(:last-child) {
+  margin-right: 262px;
+}
+
+.logBtn {
+  display: flex;
+  align-items: center;
+  background-color: inherit;
+  border: none;
+}
+
+.icon {
+  fill: #f4c550;
+  margin-right: 8px;
+}
+
+.regBtn {
+  border-radius: 12px;
+  padding: 14px 39px;
+  width: 166px;
+  height: 48px;
+  outline: none;
+  border: none;
+  background-color: #121417;
+  color: #fff;
+}

@@ -1,0 +1,58 @@
+.heroInfo {
+  border-radius: 30px;
+  width: 720px;
+  height: 530px;
+
+  background-color: #f8f8f8;
+
+  padding: 98px 108px 98px 64px;
+  margin-left: -64px;
+}
+
+.heroTitle {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  color: #121417;
+
+  margin-bottom: 32px;
+}
+
+.heroSpan {
+  font-style: italic;
+  font-weight: 400;
+
+  display: inline-block;
+  background-color: #fbe9ba;
+  border-radius: 8px;
+  width: 195px;
+  height: 40px;
+  text-align: center;
+  line-height: 37px;
+}
+
+.heroText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  letter-spacing: -0.02em;
+  color: #121417;
+
+  width: 471px;
+
+  margin-bottom: 64px;
+}
+
+.headerLink {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  color: #121417;
+
+  border-radius: 12px;
+  padding: 16px 88px;
+  width: 267px;
+  height: 60px;
+  background-color: #f4c550;
+}
