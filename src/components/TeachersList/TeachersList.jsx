@@ -117,3 +117,5 @@ export default function TeachersList({ user }) {
     </div>
   );
 }
+
+// TeachersList.propTypes;
