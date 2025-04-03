@@ -1,12 +1,39 @@
-import { lazy, Suspense } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { login } from './redux/auth/slice';
+import { auth } from '../firebase';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from '../src/components/Header/Header';
 const HomePage = lazy(() => import('../src/pages/HomePage/HomePage'));
-const Favorites = lazy(() => import('../src/pages/Favorites/Favorites'));
+// const Favorites = lazy(() => import('../src/pages/Favorites/Favorites'));
 const Teachers = lazy(() => import('../src/pages/Teachers/Teachers'));
+// import Teachers from './pages/Teachers/Teachers';
 import './App.css';
 
 function App() {
+  const [authReady, setAuthReady] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      if (user) {
+        const cleanUser = {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          emailVerified: user.emailVerified,
+          photoURL: user.photoURL,
+        };
+        dispatch(login({ user: cleanUser }));
+      }
+      setAuthReady(true);
+    });
+    return () => unsubscribe();
+  }, [dispatch]);
+
+  if (!authReady) return <div> Checking session ...</div>;
+
   return (
     <>
       <Header />

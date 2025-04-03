@@ -1,10 +1,23 @@
 import { useState, useEffect } from 'react';
 import { IoHeartOutline } from 'react-icons/io5';
 import { IoHeartSharp } from 'react-icons/io5';
+import { IoEllipse } from 'react-icons/io5';
+import PropTypes from 'prop-types';
+import css from '../Teacher/Teacher.module.css';
 
-export default function Teacher(teacher) {
+export default function Teacher({ teacher }) {
+  useEffect(() => {
+    document.body.style.backgroundColor = '#eee';
+
+    return () => {
+      document.body.style.backgroundColor = '';
+    };
+  }, []);
+
   const [favorites, setFavorites] = useState(() => {
     // Инициализация состояния из localStorage
+    console.log(teacher);
+
     const storedFavorites = localStorage.getItem('favorites');
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
@@ -20,7 +33,7 @@ export default function Teacher(teacher) {
     const updatedFavorites = favorites.includes(teacher.id)
       ? favorites.filter(favId => favId !== teacher.id) // Удаляем из избранного
       : [...favorites, teacher.id]; // Добавляем в избранное
-    console.log(teacher.id);
+    // console.log(teacher.id);
 
     setFavorites(updatedFavorites);
 
@@ -28,25 +41,42 @@ export default function Teacher(teacher) {
   };
 
   return (
-    <div>
-      <aside>
-        <img src="" alt="" />
+    <div className={css.cardWrap}>
+      <aside className={css.imgWrap}>
+        <img
+          src={teacher.avatar_url}
+          className={css.ava}
+          alt="Teacher Photo"
+          // width="96px"
+        />
+        <div className={css.ellipseWrap}>
+          <IoEllipse className={css.ellipse} />
+        </div>
       </aside>
-      <p>Languages</p>
-      <h2>{teacher.name} Smith</h2>
-      <ul>
-        <li>Lessons online</li>
-        <li>Lessons done: 1098</li>
-        <li>Rating: 4.8</li>
-        <li>Price / 1 hour: 30$</li>
-      </ul>
-      <button
-        type="button"
-        // className={css.heartBtn}
-        onClick={() => toggleFavorite(teacher)}
-      >
-        {favorites.includes(teacher.id) ? <IoHeartSharp /> : <IoHeartOutline />}
-      </button>
+      <div className={css.listWrap}>
+        <p className={css.languages}>Languages</p>
+        <ul className={css.teacherList}>
+          <li>Lessons online</li>
+          <li>Lessons done: {teacher.lessons_done}</li>
+          <li>Rating: {teacher.rating}</li>
+          <li>Price / 1 hour: {teacher.price_per_hour}$</li>
+        </ul>
+        <button
+          type="button"
+          // className={css.heartBtn}
+          onClick={() => toggleFavorite(teacher)}
+        >
+          {favorites.includes(teacher) ? <IoHeartSharp /> : <IoHeartOutline />}
+        </button>
+      </div>
+
+      <h2>
+        {teacher.name} {teacher.surname}
+      </h2>
     </div>
   );
 }
+
+Teacher.propTypes = {
+  teacher: PropTypes.object.isRequired,
+};

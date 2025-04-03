@@ -1,0 +1,95 @@
+.logModal {
+  position: absolute;
+  border: 0.1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  outline: none;
+
+  padding: 64px;
+
+  border-radius: 30px;
+  width: 565px;
+}
+
+.modalTitle {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  color: #121417;
+
+  margin-bottom: 20px;
+}
+
+.clsBtn {
+  position: absolute;
+  top: 20px;
+  left: 514px;
+  border: none;
+  background-color: #fff;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.modalText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  color: rgba(18, 20, 23, 0.8);
+
+  margin-bottom: 40px;
+}
+
+.input {
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  padding: 16px 0 16px 18px;
+  width: 438px;
+  height: 54px;
+}
+
+.input::placeholder {
+  color: #121417;
+}
+
+.firstClass {
+  margin-bottom: 18px;
+}
+
+.secondClass {
+  margin-bottom: 40px;
+}
+
+.eyeBtn {
+  position: absolute;
+  top: 305px;
+  left: 464px;
+  border: none;
+  padding: 0;
+
+  background-color: #fff;
+}
+
+.eyeOpen {
+  font-size: 20px;
+}
+
+.eyeClosed {
+  font-size: 20px;
+}
+
+.modalBtn {
+  border-radius: 12px;
+  border: none;
+  width: 438px;
+  height: 60px;
+  background-color: #f4c550;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  text-align: center;
+  color: #121417;
+}

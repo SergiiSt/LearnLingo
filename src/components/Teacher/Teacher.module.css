@@ -1,0 +1,64 @@
+.cardWrap {
+  border-radius: 24px;
+  padding: 24px;
+  width: 1184px;
+  height: 328px;
+  margin: 0 auto 32px auto;
+  background-color: #fff;
+}
+
+.imgWrap {
+  border: 3px solid #fbe9ba;
+  border-radius: 100px;
+  width: 120px;
+  height: 120px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+}
+
+.ava {
+  border-radius: 100px;
+  width: 96px;
+  height: 96px;
+}
+
+.ellipseWrap {
+  position: absolute;
+  top: 15px;
+  left: 82px;
+
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ellipse {
+  fill: #38cd3e;
+  width: 8px;
+  height: 8px;
+  border-radius: 100px;
+}
+
+.listWrap {
+  margin-left: 192px;
+  margin-top: -122px;
+
+  display: flex;
+}
+
+.languages {
+  margin-right: 192px;
+}
+
+.teacherList {
+  display: flex;
+  margin-right: 64px;
+}

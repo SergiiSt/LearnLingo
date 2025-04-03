@@ -2,16 +2,14 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import * as Yup from 'yup'; // Для валидации
 import { IoCloseOutline } from 'react-icons/io5';
 import { LuEyeOff, LuEye } from 'react-icons/lu';
 
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { setPersistence, browserLocalPersistence } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../firebase';
 import toast, { Toaster } from 'react-hot-toast';
-
-import css from '../LoginModal/LoginModal.module.css';
+import css from '../RegistrationModal/RegistrationModal.module.css';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/slice';
 
@@ -28,35 +26,27 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-export default function LoginModal({ modalIsOpen, closeModal }) {
-  const dispatch = useDispatch();
+export default function RegistrationModal({ modalIsOpen, closeModal }) {
   const [showPassword, setShowPassword] = useState(false); // Для отображения пароля
+  const dispatch = useDispatch();
 
   const handleModalClose = () => {
     closeModal();
   };
 
-  const handleLogIn = async (values, actions) => {
+  const handleSignUp = async (values, actions) => {
     const { email, password } = values;
     try {
-      await setPersistence(auth, browserLocalPersistence);
-      const userCredential = await signInWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
       const user = userCredential.user;
-      const cleanUser = {
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        emailVerified: user.emailVerified,
-        photoURL: user.photoURL,
-      };
       toast.success('You signed in sucsessfuly');
-      dispatch(login({ cleanUser }));
+      dispatch(login({ user }));
       actions.resetForm();
-      closeModal();
+      handleModalClose();
     } catch (error) {
       toast.error('Error signing in');
       actions.setFieldError('email', 'Invalid email or password');
@@ -82,18 +72,19 @@ export default function LoginModal({ modalIsOpen, closeModal }) {
         //   if (e.target === e.currentTarget) handleModalClose();
         // }}
       >
-        <h2 className={css.modalTitle}>Log In</h2>
+        <h2 className={css.modalTitle}>Registration</h2>
         <button type="button" onClick={handleModalClose} className={css.clsBtn}>
           <IoCloseOutline />
         </button>
         <p className={css.modalText}>
-          Welcome back! Please enter your credentials to access your account and
-          continue your search for a teacher.
+          Thank you for your interest in our platform! In order to register, we
+          need some information. Please provide us with the following
+          information
         </p>
         <Formik
           initialValues={{ email: '', password: '' }}
           validationSchema={validationSchema}
-          onSubmit={handleLogIn}
+          onSubmit={handleSignUp}
         >
           {({ isSubmitting }) => (
             <Form>
@@ -149,7 +140,7 @@ export default function LoginModal({ modalIsOpen, closeModal }) {
   );
 }
 
-LoginModal.propTypes = {
+RegistrationModal.propTypes = {
   modalIsOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
 };

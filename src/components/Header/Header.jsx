@@ -3,19 +3,26 @@ import { useState } from 'react';
 import css from '../Header/Header.module.css';
 import LearnLingoLogo from '../../assets/img/LearnLingoLogo.jpg';
 import { MdLogin } from 'react-icons/md';
-import RegistrationModal from '../LoginModal/LoginModal';
+import LoginModal from '../LoginModal/LoginModal';
+import RegistrationModal from '../RegistrationModal/RegistrationModal';
 
 export default function Header() {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  // const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalType, setModalType] = useState(null); // Хранит тип модального окна (login или register)
 
-  const openModal = () => {
+  const openLoginModal = () => {
     document.body.classList.add('modal-open');
-    setModalIsOpen(true);
+    setModalType('login');
   };
 
+  const openRegistrationModal = () => {
+    document.body.classList.add('modal-open');
+    setModalType('register');
+  };
   const closeModal = () => {
     document.body.classList.remove('modal-open');
-    setModalIsOpen(false);
+    // setModalIsOpen(false);
+    setModalType(null);
   };
 
   return (
@@ -36,18 +43,25 @@ export default function Header() {
           </ul>
           <ul className={css.headerList}>
             <li className={css.second}>
-              <button className={css.logBtn} onClick={openModal}>
+              <button className={css.logBtn} onClick={openLoginModal}>
                 <MdLogin className={css.icon} />
                 Log in
               </button>
             </li>
             <li>
-              <button className={css.regBtn}>Registration</button>
+              <button className={css.regBtn} onClick={openRegistrationModal}>
+                Registration
+              </button>
             </li>
           </ul>
         </nav>
       </div>
-      <RegistrationModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      {modalType === 'login' && (
+        <LoginModal modalIsOpen={true} closeModal={closeModal} />
+      )}
+      {modalType === 'register' && (
+        <RegistrationModal modalIsOpen={true} closeModal={closeModal} />
+      )}
     </header>
   );
 }
