@@ -43,12 +43,7 @@ export default function Teacher({ teacher }) {
   return (
     <div className={css.cardWrap}>
       <aside className={css.imgWrap}>
-        <img
-          src={teacher.avatar_url}
-          className={css.ava}
-          alt="Teacher Photo"
-          // width="96px"
-        />
+        <img src={teacher.avatar_url} className={css.ava} alt="Teacher Photo" />
         <div className={css.ellipseWrap}>
           <IoEllipse className={css.ellipse} />
         </div>
