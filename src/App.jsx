@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { login } from './redux/auth/slice';
-import { auth } from '../firebase';
+import { auth } from '..firebase/';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from '../src/components/Header/Header';
