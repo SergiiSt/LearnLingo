@@ -54,11 +54,11 @@ export default function LoginModal({ modalIsOpen, closeModal }) {
         photoURL: user.photoURL,
       };
       toast.success('You signed in sucsessfuly');
-      dispatch(login({ cleanUser }));
+      dispatch(login({ user: cleanUser }));
       actions.resetForm();
       closeModal();
     } catch (error) {
-      toast.error('Error signing in');
+      toast.error('Signing in error');
       actions.setFieldError('email', 'Invalid email or password');
     }
   };

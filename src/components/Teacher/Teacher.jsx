@@ -14,9 +14,11 @@ export default function Teacher({ teacher }) {
     };
   }, []);
 
+  const [expanded, setExpanded] = useState(false);
+
   const [favorites, setFavorites] = useState(() => {
     // Инициализация состояния из localStorage
-    console.log(teacher);
+    // console.log(teacher);
 
     const storedFavorites = localStorage.getItem('favorites');
     return storedFavorites ? JSON.parse(storedFavorites) : [];
@@ -39,6 +41,8 @@ export default function Teacher({ teacher }) {
 
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
+
+  console.log(teacher);
 
   return (
     <div className={css.cardWrap}>
@@ -64,10 +68,37 @@ export default function Teacher({ teacher }) {
           {favorites.includes(teacher) ? <IoHeartSharp /> : <IoHeartOutline />}
         </button>
       </div>
-
-      <h2>
+      <h2 className={css.nameTitle}>
         {teacher.name} {teacher.surname}
       </h2>
+      <ul className={css.infoList}>
+        <li>Speaks:{teacher.languages}</li>
+        <li>Lesson Info:{teacher.lesson_info}</li>
+        <li>Conditions:{teacher.conditions}</li>
+        <li>
+          {!expanded && (
+            <button
+              className={css.readMoreBtn}
+              onClick={() => setExpanded(true)}
+            >
+              Read more
+            </button>
+          )}
+        </li>
+      </ul>
+      {expanded && (
+        <>
+          <p className={css.infoList}>{teacher.experience}</p>
+          <ul className={css.infoList}>
+            <li>
+              <p>{teacher.reviews[0].reviewer_name}</p>
+              <p>{teacher.reviews[0].reviewer_rating}</p>
+              <p>{teacher.reviews[0].comment}</p>
+            </li>
+            <li></li>
+          </ul>
+        </>
+      )}
     </div>
   );
 }

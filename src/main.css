@@ -1,8 +1,11 @@
 @import 'modern-normalize';
 
 .container {
-  width: 1184px;
+  max-width: 1184px;
+  width: 100%;
   margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 ul {
@@ -31,4 +34,21 @@ button {
 p {
   margin: 0;
   padding: 0;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 }

@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { ref, child, get } from 'firebase/database';
 import { db } from '../../../firebase';
 import { useSelector } from 'react-redux';
+import Loader from '../Loader/Loader';
 
 import Teacher from '../Teacher/Teacher';
 
 export default function TeachersList() {
   const user = useSelector(state => state.auth.user);
-  // console.log(user);
 
   const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ export default function TeachersList() {
   useEffect(() => {
     const getTeachers = async () => {
       if (!user || !user.uid) {
-        console.error('User is not logged in');
+        // console.error('User is not logged in');
         setError('You must be logged in to view teachers');
         return;
       }
@@ -27,17 +27,17 @@ export default function TeachersList() {
         if (snapshot.exists()) {
           const teachersData = Object.entries(snapshot.val()).map(
             ([key, value]) => ({
-              id: key, // Используем ключ как id
-              ...value, // Сохраняем остальные данные
+              id: key,
+              ...value,
             })
           );
-          // console.log('Teachers with IDs:', teachersData); // Логируем преобразованные данные
+
           setTeachers(teachersData);
         } else {
           console.log('No data available');
         }
       } catch (error) {
-        console.error('Error fetching teachers:', error.message);
+        // console.error('Error fetching teachers:', error.message);
         setError('Failed to fetch teachers data');
       } finally {
         setLoading(false);
@@ -45,10 +45,10 @@ export default function TeachersList() {
     };
 
     getTeachers();
-  }, [user]); // Вызываем, если изменится `user`
+  }, [user]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (error) {

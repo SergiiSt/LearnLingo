@@ -1,19 +1,27 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import { getAuth, signOut } from 'firebase/auth';
 import css from '../Header/Header.module.css';
 import LearnLingoLogo from '../../assets/img/LearnLingoLogo.jpg';
 import { MdLogin } from 'react-icons/md';
 import LoginModal from '../LoginModal/LoginModal';
 import RegistrationModal from '../RegistrationModal/RegistrationModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../redux/auth/slice';
 
 export default function Header() {
+  const dispatch = useDispatch();
+  const auth = getAuth();
+
   // const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalType, setModalType] = useState(null); // Хранит тип модального окна (login или register)
+  const [modalType, setModalType] = useState(null);
 
   const openLoginModal = () => {
     document.body.classList.add('modal-open');
     setModalType('login');
   };
+
+  const user = useSelector(state => state.auth.user);
 
   const openRegistrationModal = () => {
     document.body.classList.add('modal-open');
@@ -25,12 +33,29 @@ export default function Header() {
     setModalType(null);
   };
 
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        dispatch(logout());
+      })
+      .catch(error => {
+        console.log(error);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   return (
     <header className={css.header}>
       <div className={`${css.headerWrap} container`}>
         <section>
           <NavLink to="/" className={css.headerLink}>
-            <img src={LearnLingoLogo} alt="LearnLingo logo" />
+            <img
+              src={LearnLingoLogo}
+              alt="LearnLingo logo"
+              className={css.headerLogo}
+            />
             <span className={css.headerTitle}>LearnLingo</span>
           </NavLink>
         </section>
@@ -43,15 +68,25 @@ export default function Header() {
           </ul>
           <ul className={css.headerList}>
             <li className={css.second}>
-              <button className={css.logBtn} onClick={openLoginModal}>
-                <MdLogin className={css.icon} />
-                Log in
-              </button>
+              {!user ? (
+                <button className={css.logBtn} onClick={openLoginModal}>
+                  <MdLogin className={css.icon} />
+                  Log in
+                </button>
+              ) : (
+                <div className={css.loggedinName}>{user.email}</div>
+              )}
             </li>
             <li>
-              <button className={css.regBtn} onClick={openRegistrationModal}>
-                Registration
-              </button>
+              {!user ? (
+                <button className={css.regBtn} onClick={openRegistrationModal}>
+                  Registration
+                </button>
+              ) : (
+                <button className={css.regBtn} onClick={handleLogout}>
+                  Log out
+                </button>
+              )}
             </li>
           </ul>
         </nav>

@@ -12,6 +12,10 @@
   align-items: center;
 }
 
+.headerLogo {
+  border-radius: 100px;
+}
+
 .headerTitle {
   font-weight: 500;
   font-size: 20px;
@@ -51,8 +55,15 @@
 .logBtn {
   display: flex;
   align-items: center;
+  width: 80px;
   background-color: inherit;
   border: none;
+}
+
+.loggedinName {
+  max-width: 80px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .icon {
