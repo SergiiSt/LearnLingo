@@ -52,10 +52,18 @@
   margin-top: -122px;
 
   display: flex;
+  align-items: flex-start;
 }
 
 .languages {
   margin-right: 192px;
+  margin-bottom: 8px;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #8a8a89;
 }
 
 .teacherList {
@@ -63,10 +71,184 @@
   margin-right: 64px;
 }
 
+.teacherListItem {
+  display: flex;
+  align-items: center;
+}
+
+.teacherListItem:not(:last-child) {
+  margin-right: 32px;
+}
+
+.price {
+  color: #38cd3e;
+}
+
+.heartBtn {
+  border: none;
+  background-color: transparent;
+  width: 25px;
+}
+
+.heartNoFavorite {
+  width: 26px !important;
+  height: 26px !important;
+  fill: red;
+}
+
+.heartFavorite {
+  width: 26px !important;
+  height: 26px !important;
+  color: red;
+  fill: red;
+}
+
+.book {
+  /* height: 1cap; */
+  margin-right: 8px;
+}
+
 .nameTitle {
   margin-left: 192px;
+  margin-bottom: 32px;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  color: #121417;
 }
 
 .infoList {
   margin-left: 192px;
+}
+
+.infoListItem:nth-child(1),
+.infoListItem:nth-child(2) {
+  margin-bottom: 8px;
+}
+
+.infoListItem:nth-child(3) {
+  margin-bottom: 16px;
+}
+
+.infoListItem:nth-child(4) {
+  margin-bottom: 32px;
+}
+
+.infoListItemSpan {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #8a8a89;
+}
+
+.readMoreBtn {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #121417;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.experience {
+  margin-left: 192px;
+  margin-bottom: 32px;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #121417;
+}
+
+.reviewsList {
+  margin-left: 192px;
+}
+
+.reviewsListItem {
+  position: relative;
+}
+
+.reviewerAvaWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 100%;
+
+  overflow: hidden;
+
+  margin-bottom: 16px;
+}
+
+.reviewerPic {
+  border-radius: 100px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviewerNameSpan {
+  position: absolute;
+  top: 0px;
+  left: 56px;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #8a8a89;
+}
+
+.reviewerRatingSpan {
+  position: absolute;
+  top: 26px;
+  left: 56px;
+
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  margin-right: 8px;
+}
+
+.comment {
+  margin-bottom: 32px;
+}
+
+.levelsList {
+  display: flex;
+  margin-left: 192px;
+}
+
+.levelsListItem {
+  border: 1px solid rgba(18, 20, 23, 0.2);
+  border-radius: 35px;
+  padding: 0 12px;
+  min-width: 110px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.levelsListItem:not(:last-child) {
+  margin-right: 8px;
+}
+
+.bookBtn {
+  border-radius: 12px;
+  padding: 16px 48px;
+  width: 232px;
+  height: 60px;
+
+  margin-top: 32px;
+  margin-left: 192px;
+
+  background-color: #f4c550;
 }

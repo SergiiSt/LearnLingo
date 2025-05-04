@@ -15,11 +15,11 @@ export default function TeachersList() {
 
   useEffect(() => {
     const getTeachers = async () => {
-      if (!user || !user.uid) {
-        // console.error('User is not logged in');
-        setError('You must be logged in to view teachers');
-        return;
-      }
+      // if (!user || !user.uid) {
+      //   // console.error('User is not logged in');
+      //   setError('You must be logged in to view teachers');
+      //   return;
+      // }
       setLoading(true);
       const dbRef = ref(db);
       try {
