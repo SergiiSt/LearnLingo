@@ -3,6 +3,7 @@ import { ref, child, get } from 'firebase/database';
 import { db } from '../../../firebase';
 import { useSelector } from 'react-redux';
 import Loader from '../Loader/Loader';
+import toast, { Toaster } from 'react-hot-toast';
 
 import Teacher from '../Teacher/Teacher';
 
@@ -12,14 +13,25 @@ export default function TeachersList() {
   const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [favorite, setFavorite] = useState(() => {
+    const stored = localStorage.getItem('favorite-list');
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('favorite-list', JSON.stringify(favorite));
+  }, [favorite]);
+
+  const toggleFavorite = id => {
+    !user
+      ? toast('You need to be logged in!')
+      : setFavorite(prev =>
+          prev.includes(id) ? prev.filter(favId => favId !== id) : [...prev, id]
+        );
+  };
 
   useEffect(() => {
     const getTeachers = async () => {
-      // if (!user || !user.uid) {
-      //   // console.error('User is not logged in');
-      //   setError('You must be logged in to view teachers');
-      //   return;
-      // }
       setLoading(true);
       const dbRef = ref(db);
       try {
@@ -37,8 +49,7 @@ export default function TeachersList() {
           console.log('No data available');
         }
       } catch (error) {
-        // console.error('Error fetching teachers:', error.message);
-        setError('Failed to fetch teachers data');
+        setError(`Failed to fetch teachers data ${error.message}`);
       } finally {
         setLoading(false);
       }
@@ -61,10 +72,15 @@ export default function TeachersList() {
 
   return (
     <div>
+      <Toaster />
       <ul>
         {teachers.map(teacher => (
           <li key={teacher.id}>
-            <Teacher teacher={teacher} />
+            <Teacher
+              teacher={teacher}
+              isFavorite={favorite.includes(teacher.id)}
+              toggle={() => toggleFavorite(teacher.id)}
+            />
           </li>
         ))}
       </ul>

@@ -50,14 +50,14 @@
 .listWrap {
   margin-left: 192px;
   margin-top: -122px;
+  margin-bottom: 8px;
 
   display: flex;
-  align-items: flex-start;
+  /* align-items: flex-start; */
 }
 
 .languages {
   margin-right: 192px;
-  margin-bottom: 8px;
 
   font-family: var(--font-family);
   font-weight: 500;
@@ -87,20 +87,25 @@
 .heartBtn {
   border: none;
   background-color: transparent;
-  width: 25px;
+  width: 26px;
+  height: 25px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .heartNoFavorite {
   width: 26px !important;
   height: 26px !important;
-  fill: red;
+  color: red;
 }
 
 .heartFavorite {
   width: 26px !important;
   height: 26px !important;
-  color: red;
-  fill: red;
+  color: black;
+  /* fill: red; */
 }
 
 .book {

@@ -9,7 +9,7 @@ import { LuEyeOff, LuEye } from 'react-icons/lu';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { auth } from '../../../firebase';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 import css from '../LoginModal/LoginModal.module.css';
 import { useDispatch } from 'react-redux';
@@ -58,7 +58,7 @@ export default function LoginModal({ modalIsOpen, closeModal }) {
       actions.resetForm();
       closeModal();
     } catch (error) {
-      toast.error('Signing in error');
+      toast.error(`Signing in ${error.message}`);
       actions.setFieldError('email', 'Invalid email or password');
     }
   };
@@ -72,7 +72,6 @@ export default function LoginModal({ modalIsOpen, closeModal }) {
 
   return (
     <div>
-      <Toaster />
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={handleModalClose}

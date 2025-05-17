@@ -10,6 +10,7 @@ const HomePage = lazy(() => import('../src/pages/HomePage/HomePage'));
 const Teachers = lazy(() => import('../src/pages/Teachers/Teachers'));
 // import Teachers from './pages/Teachers/Teachers';
 import Loader from './components/Loader/Loader';
+import { Toaster } from 'react-hot-toast';
 import './App.css';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <>
+      <Toaster />
       <Header />
       <Suspense fallback={<Loader />}>
         <Routes>

@@ -8,7 +8,7 @@ import { LuEyeOff, LuEye } from 'react-icons/lu';
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../firebase';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import css from '../RegistrationModal/RegistrationModal.module.css';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/slice';
@@ -48,7 +48,7 @@ export default function RegistrationModal({ modalIsOpen, closeModal }) {
       actions.resetForm();
       handleModalClose();
     } catch (error) {
-      toast.error('Error signing in');
+      toast.error(`Error signing in ${error.message}`);
       actions.setFieldError('email', 'Invalid email or password');
     }
   };
@@ -62,7 +62,7 @@ export default function RegistrationModal({ modalIsOpen, closeModal }) {
 
   return (
     <div>
-      <Toaster />
+      s
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={handleModalClose}

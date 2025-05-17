@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react';
 import { IoHeartOutline } from 'react-icons/io5';
 import { IoHeartSharp } from 'react-icons/io5';
 import { IoEllipse } from 'react-icons/io5';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReviewerPic from '../../assets/img/ReviewPic.png';
 import Star from '../../assets/img/Star.png';
 import Book from '../../assets/img/Book.png';
 import css from '../Teacher/Teacher.module.css';
 
-export default function Teacher({ teacher }) {
+export default function Teacher({ teacher, isFavorite, toggle }) {
+  const user = useSelector(state => state.auth.user);
   useEffect(() => {
     document.body.style.backgroundColor = '#eee';
 
@@ -18,34 +20,6 @@ export default function Teacher({ teacher }) {
   }, []);
 
   const [expanded, setExpanded] = useState(false);
-
-  const [favorites, setFavorites] = useState(() => {
-    // Инициализация состояния из localStorage
-    // console.log(teacher);
-
-    const storedFavorites = localStorage.getItem('favorites');
-    return storedFavorites ? JSON.parse(storedFavorites) : [];
-  });
-  useEffect(() => {
-    const storedFavorites = localStorage.getItem('favorites');
-    if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-  }, [favorites]);
-
-  const toggleFavorite = teacher => {
-    const updatedFavorites = favorites.includes(teacher.id)
-      ? favorites.filter(favId => favId !== teacher.id)
-      : [...favorites, teacher.id];
-
-    setFavorites(updatedFavorites);
-  };
-
-  // console.log(teacher);
 
   return (
     <div className={css.cardWrap}>
@@ -77,12 +51,15 @@ export default function Teacher({ teacher }) {
         <button
           type="button"
           className={css.heartBtn}
-          onClick={() => toggleFavorite(teacher.id)}
+          onClick={toggle}
+          title={!user ? 'Log in to add to favorites' : 'Add to favorites'}
         >
-          {favorites.includes(teacher) ? (
+          {!user ? (
             <IoHeartOutline className={css.heartFavorite} />
-          ) : (
+          ) : isFavorite ? (
             <IoHeartSharp className={css.heartNoFavorite} />
+          ) : (
+            <IoHeartOutline className={css.heartFavorite} />
           )}
         </button>
       </div>
@@ -157,4 +134,6 @@ export default function Teacher({ teacher }) {
 
 Teacher.propTypes = {
   teacher: PropTypes.object.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired,
 };
