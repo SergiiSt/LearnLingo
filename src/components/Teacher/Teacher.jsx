@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { IoHeartOutline } from 'react-icons/io5';
 import { IoHeartSharp } from 'react-icons/io5';
 import { IoEllipse } from 'react-icons/io5';
@@ -9,17 +9,12 @@ import Star from '../../assets/img/Star.png';
 import Book from '../../assets/img/Book.png';
 import css from '../Teacher/Teacher.module.css';
 
-export default function Teacher({ teacher, isFavorite, toggle }) {
+export default function Teacher({ teacher, isFavorite, toggle, level }) {
   const user = useSelector(state => state.auth.user);
-  useEffect(() => {
-    document.body.style.backgroundColor = '#eee';
-
-    return () => {
-      document.body.style.backgroundColor = '';
-    };
-  }, []);
 
   const [expanded, setExpanded] = useState(false);
+
+  let selectedLevel = level;
 
   return (
     <div className={css.cardWrap}>
@@ -122,7 +117,12 @@ export default function Teacher({ teacher, isFavorite, toggle }) {
       )}
       <ul className={css.levelsList}>
         {teacher.levels.map((l, i) => (
-          <li key={i} className={css.levelsListItem}>
+          <li
+            key={i}
+            className={`${css.levelsListItem} ${
+              selectedLevel === l ? css.active : ''
+            }`}
+          >
             {l}
           </li>
         ))}
@@ -136,4 +136,5 @@ Teacher.propTypes = {
   teacher: PropTypes.object.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
+  level: PropTypes.string.isRequired,
 };

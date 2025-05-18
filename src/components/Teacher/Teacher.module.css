@@ -246,6 +246,10 @@
   margin-right: 8px;
 }
 
+.active {
+  background-color: #f4c550;
+}
+
 .bookBtn {
   border-radius: 12px;
   padding: 16px 48px;

@@ -1,0 +1,39 @@
+.filters {
+  display: flex;
+  gap: 20px;
+
+  margin: 0 auto 32px auto;
+  width: 1300px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  color: #8a8a89;
+}
+
+.select {
+  appearance: none;
+  border: none;
+  border-radius: 14px;
+  padding: 0 40px 0 16px;
+  width: 221px;
+  height: 48px;
+
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg fill="%23212121" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+.selectPrice {
+  width: 124px;
+}
