@@ -1,0 +1,166 @@
+.bookmodal {
+  position: absolute;
+  width: 600px;
+  border-radius: 30px;
+  background-color: #fff;
+  border: 0.1px solid rgb(204, 204, 204);
+
+  padding: 64px;
+}
+
+.closeBtn {
+  position: absolute;
+  left: 548px;
+  top: 20px;
+  width: 27px;
+  height: 27px;
+  border: none;
+  background-color: transparent;
+  font-size: 27px;
+  padding: 0;
+}
+
+.modalTitle {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  color: #121417;
+
+  margin-bottom: 20px;
+}
+
+.modalParagraph {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  color: rgba(18, 20, 23, 0.8);
+  margin-bottom: 20px;
+}
+
+.teacherWrap {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.modalTeacher {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 133%;
+  color: #8a8a89;
+
+  margin-left: 58px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.teacherPhoto {
+  width: 44px;
+  border-radius: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.teacherName {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #121417;
+
+  margin-left: 58px;
+}
+
+.modalRadio {
+  border: none;
+  padding: 0;
+
+  margin-bottom: 40px;
+  /* margin-inline: 0; */
+}
+
+.legend {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 133%;
+  color: #121417;
+
+  margin-bottom: 20px;
+}
+
+.inputWrap {
+  display: flex;
+  align-items: center;
+}
+
+.inputWrap:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+input[type='radio'] {
+  position: relative;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  display: inline-block;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  transition: border 0.2s ease-in-out;
+
+  margin-right: 8px;
+}
+
+input[type='radio']::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type='radio']:checked {
+  border: 2px solid #f4c550;
+}
+
+input[type='radio']:checked::before {
+  background-color: #f4c550; /* Цвет при выборе */
+}
+
+.nameInput {
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  padding: 16px 18px 16px 18px;
+  width: 472px;
+  height: 54px;
+}
+
+.nameInput:not(:last-child) {
+  margin-bottom: 18px;
+}
+
+.nameInput:last-child {
+  margin-bottom: 40px;
+}
+
+input[type='text']::placeholder {
+  color: #121417;
+}
+
+.bookBtn {
+  border-radius: 12px;
+  border: none;
+  padding: 16px 215px;
+  width: 472px;
+  height: 60px;
+  background: #f4c550;
+}

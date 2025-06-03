@@ -149,6 +149,11 @@
   color: #8a8a89;
 }
 
+.infoListItemSpanLang {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
 .readMoreBtn {
   font-family: var(--font-family);
   font-weight: 500;

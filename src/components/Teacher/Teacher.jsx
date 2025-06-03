@@ -3,6 +3,7 @@ import { IoHeartOutline } from 'react-icons/io5';
 import { IoHeartSharp } from 'react-icons/io5';
 import { IoEllipse } from 'react-icons/io5';
 import { useSelector } from 'react-redux';
+import BookingModal from '../BookingModal/BookingModal';
 import PropTypes from 'prop-types';
 import ReviewerPic from '../../assets/img/ReviewPic.png';
 import Star from '../../assets/img/Star.png';
@@ -13,7 +14,17 @@ export default function Teacher({ teacher, isFavorite, toggle, level }) {
   const user = useSelector(state => state.auth.user);
 
   const [expanded, setExpanded] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const openModal = () => {
+    document.body.classList.add('modal-open');
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    document.body.classList.remove('modal-open');
+    setModalIsOpen(false);
+  };
   let selectedLevel = level;
 
   return (
@@ -64,7 +75,9 @@ export default function Teacher({ teacher, isFavorite, toggle, level }) {
       <ul className={css.infoList}>
         <li className={css.infoListItem}>
           <span className={css.infoListItemSpan}>Speaks:</span>&nbsp;
-          {teacher.languages.join(',')}
+          <span className={css.infoListItemSpanLang}>
+            {teacher.languages.join(', ')}
+          </span>
         </li>
         <li className={css.infoListItem}>
           <span className={css.infoListItemSpan}>Lesson Info:</span>&nbsp;
@@ -127,7 +140,16 @@ export default function Teacher({ teacher, isFavorite, toggle, level }) {
           </li>
         ))}
       </ul>
-      {expanded && <button className={css.bookBtn}>Book trial lesson</button>}
+      {expanded && (
+        <button className={css.bookBtn} onClick={openModal}>
+          Book trial lesson
+        </button>
+      )}
+      <BookingModal
+        closeModal={closeModal}
+        modalIsOpen={modalIsOpen}
+        teacher={teacher}
+      />
     </div>
   );
 }

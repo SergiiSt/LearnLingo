@@ -30,7 +30,7 @@ Modal.setAppElement('#root');
 
 export default function LoginModal({ modalIsOpen, closeModal }) {
   const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = useState(false); // Для отображения пароля
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleModalClose = () => {
     closeModal();
