@@ -1,6 +1,8 @@
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { ref, push } from 'firebase/database';
+import { db } from '../../../firebase';
 
 import { RxCross2 } from 'react-icons/rx';
 
@@ -19,8 +21,31 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export default function BookingModal({ modalIsOpen, closeModal, teacher }) {
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [reason, setReason] = useState('');
+
   const handleModalClose = () => {
     closeModal();
+  };
+
+  const handleBook = async () => {
+    const bookingData = {
+      fullName,
+      email,
+      phone,
+      reason,
+      teacherId: `${teacher.name} ${teacher.surname}, Teacher id: ${teacher.id}`,
+      createdAt: new Date().toISOString(),
+    };
+    try {
+      await push(ref(db, 'bookings'), bookingData);
+      alert('Lesson booked successfully!');
+      closeModal();
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
   };
 
   useEffect(() => {
@@ -37,8 +62,6 @@ export default function BookingModal({ modalIsOpen, closeModal, teacher }) {
       document.documentElement.classList.remove('modal-open');
     };
   }, [modalIsOpen]);
-
-  // console.log(teacher);
 
   return (
     <div>
@@ -74,23 +97,53 @@ export default function BookingModal({ modalIsOpen, closeModal, teacher }) {
               What is your main reason for learning English?
             </legend>
             <div className={css.inputWrap}>
-              <input type="radio" id="career" name="reason" value="career" />
+              <input
+                type="radio"
+                id="career"
+                name="reason"
+                value="career"
+                onChange={e => setReason(e.target.value)}
+              />
               <label htmlFor="career">Career and business</label>
             </div>
             <div className={css.inputWrap}>
-              <input type="radio" id="kids" name="reason" value="kids" />
+              <input
+                type="radio"
+                id="kids"
+                name="reason"
+                value="kids"
+                onChange={e => setReason(e.target.value)}
+              />
               <label htmlFor="kids">Lesson for kids</label>
             </div>
             <div className={css.inputWrap}>
-              <input type="radio" id="abroad" name="reason" value="abroad" />
+              <input
+                type="radio"
+                id="abroad"
+                name="reason"
+                value="abroad"
+                onChange={e => setReason(e.target.value)}
+              />
               <label htmlFor="abroad">Living abroad</label>
             </div>
             <div className={css.inputWrap}>
-              <input type="radio" id="exams" name="reason" value="exams" />
+              <input
+                type="radio"
+                id="exams"
+                name="reason"
+                value="exams"
+                onChange={e => setReason(e.target.value)}
+              />
               <label htmlFor="exams">Exams and coursework</label>
             </div>
             <div className={css.inputWrap}>
-              <input type="radio" id="travel" name="reason" value="travel" />
+              <input
+                type="radio"
+                id="travel"
+                name="reason"
+                value="travel"
+                onChange={e => setReason(e.target.value)}
+              />
               <label htmlFor="travel">Culture, travel or hobby</label>
             </div>
           </fieldset>
@@ -99,15 +152,24 @@ export default function BookingModal({ modalIsOpen, closeModal, teacher }) {
               type="text"
               placeholder="Full Name"
               className={css.nameInput}
+              onChange={e => setFullName(e.target.value)}
             />
-            <input type="text" placeholder="Email" className={css.nameInput} />
+            <input
+              type="text"
+              placeholder="Email"
+              className={css.nameInput}
+              onChange={e => setEmail(e.target.value)}
+            />
             <input
               type="text"
               placeholder="Phone number"
               className={css.nameInput}
+              onChange={e => setPhone(e.target.value)}
             />
           </div>
-          <button className={css.bookBtn}>Book</button>
+          <button className={css.bookBtn} onClick={handleBook}>
+            Book
+          </button>
         </div>
       </Modal>
     </div>
