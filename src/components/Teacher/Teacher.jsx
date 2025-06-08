@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import ReviewerPic from '../../assets/img/ReviewPic.png';
 import Star from '../../assets/img/Star.png';
 import Book from '../../assets/img/Book.png';
+import toast from 'react-hot-toast';
 import css from '../Teacher/Teacher.module.css';
 
 export default function Teacher({ teacher, isFavorite, toggle, level }) {
@@ -25,6 +26,11 @@ export default function Teacher({ teacher, isFavorite, toggle, level }) {
     document.body.classList.remove('modal-open');
     setModalIsOpen(false);
   };
+
+  const pushLogIn = () => {
+    toast('You must be logged in to book your trial lesson.');
+  };
+
   let selectedLevel = level;
 
   return (
@@ -140,8 +146,9 @@ export default function Teacher({ teacher, isFavorite, toggle, level }) {
           </li>
         ))}
       </ul>
+
       {expanded && (
-        <button className={css.bookBtn} onClick={openModal}>
+        <button className={css.bookBtn} onClick={!user ? pushLogIn : openModal}>
           Book trial lesson
         </button>
       )}

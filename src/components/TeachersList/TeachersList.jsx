@@ -108,6 +108,7 @@ export default function TeachersList() {
               Languages
             </label>
             <select
+              id="Languages"
               value={selectedLanguage}
               className={css.select}
               onChange={langChange}
@@ -121,10 +122,11 @@ export default function TeachersList() {
             </select>
           </div>
           <div className={css.filter}>
-            <label htmlFor="Level of knowledge" className={css.label}>
+            <label htmlFor="Level" className={css.label}>
               Level of knowledge
             </label>
             <select
+              id="Level"
               value={selectedLevel}
               className={css.select}
               onChange={e => setSelectedLevel(e.target.value)}
@@ -142,6 +144,7 @@ export default function TeachersList() {
               Price
             </label>
             <select
+              id="Price"
               value={selectedPrice}
               className={`${css.select} ${css.selectPrice}`}
               onChange={e => setSelectedPrice(e.target.value)}

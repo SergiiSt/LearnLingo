@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { ref, push } from 'firebase/database';
 import { db } from '../../../firebase';
+import toast from 'react-hot-toast';
 
 import { RxCross2 } from 'react-icons/rx';
 
@@ -41,7 +42,7 @@ export default function BookingModal({ modalIsOpen, closeModal, teacher }) {
     };
     try {
       await push(ref(db, 'bookings'), bookingData);
-      alert('Lesson booked successfully!');
+      toast('Lesson booked successfully!');
       closeModal();
     } catch (error) {
       console.error('Error:', error.message);
@@ -68,7 +69,10 @@ export default function BookingModal({ modalIsOpen, closeModal, teacher }) {
       <Modal
         className={css.bookmodal}
         isOpen={modalIsOpen}
-        style={customStyles}
+        style={{
+          overlay: { backgroundColor: 'rgba(0, 0, 0, 0.75)' },
+          content: customStyles.content,
+        }}
         onRequestClose={handleModalClose}
       >
         <div>
