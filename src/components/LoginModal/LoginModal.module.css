@@ -42,6 +42,12 @@
   margin-bottom: 40px;
 }
 
+.label {
+  display: block;
+  margin-bottom: 18px;
+  height: 77.39px;
+}
+
 .input {
   border: 1px solid rgba(18, 20, 23, 0.1);
   border-radius: 12px;
@@ -62,6 +68,10 @@
   margin-bottom: 5px;
 }
 
+.error {
+  color: red;
+}
+
 .eyeBtn {
   position: absolute;
   top: 327px;
@@ -69,7 +79,7 @@
   border: none;
   padding: 0;
 
-  background-color: #fff;
+  background-color: transparent;
 }
 
 .eyeOpen {

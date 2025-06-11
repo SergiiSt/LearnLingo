@@ -12,7 +12,7 @@ import toast from 'react-hot-toast';
 import css from '../Teacher/Teacher.module.css';
 
 export default function Teacher({ teacher, isFavorite, toggle, level }) {
-  const user = useSelector(state => state.auth.user);
+  const user = useSelector(state => state.auth.uid);
 
   const [expanded, setExpanded] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);

@@ -7,6 +7,10 @@
   display: flex;
 }
 
+.geaderLogoWrap {
+  display: flex;
+}
+
 .headerLink {
   display: flex;
   align-items: center;
@@ -29,6 +33,12 @@
   display: flex;
   align-items: center;
   margin-left: 390px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+li > a {
+  color: #121417;
 }
 
 .headerList {
@@ -40,7 +50,7 @@
   color: #121417;
 }
 
-.headerList > .first {
+.headerList > :not(:last-child) {
   margin-right: 28px;
 }
 
@@ -48,9 +58,9 @@
   margin-right: 16px;
 }
 
-.headerList:not(:last-child) {
+/* .headerList:not(:last-child) {
   margin-right: 262px;
-}
+} */
 
 .logBtn {
   display: flex;
@@ -60,8 +70,12 @@
   border: none;
 }
 
+.greetingWrap {
+  margin-right: 10px;
+}
+
 .loggedinName {
-  max-width: 80px;
+  max-width: 300px;
   text-overflow: ellipsis;
   overflow: hidden;
 }

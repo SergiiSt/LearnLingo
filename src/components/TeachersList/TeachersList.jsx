@@ -10,7 +10,7 @@ import css from '../TeachersList/TeachersList.module.css';
 import Teacher from '../Teacher/Teacher';
 
 export default function TeachersList() {
-  const user = useSelector(state => state.auth.user);
+  const user = useSelector(state => state.auth.uid);
 
   useEffect(() => {
     document.body.style.backgroundColor = '#eee';
@@ -57,6 +57,7 @@ export default function TeachersList() {
               ...value,
             })
           );
+          // console.log(teachersData);
 
           setTeachers(teachersData);
         } else {

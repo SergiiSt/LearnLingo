@@ -104,7 +104,7 @@
   color: #121417;
 }
 
-label {
+.fieldWrapper {
   display: block;
   margin-bottom: 18px;
   height: 77.39px;

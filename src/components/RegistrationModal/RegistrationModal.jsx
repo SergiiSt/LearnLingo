@@ -29,8 +29,6 @@ Modal.setAppElement('#root');
 
 export default function RegistrationModal({ modalIsOpen, closeModal }) {
   const [showPassword, setShowPassword] = useState(false);
-  // const [checkPassword, setCheckPassword] = useState('');
-  // const [checkPasswordRep, setCheckPasswordRep] = useState('');
 
   const dispatch = useDispatch();
 
@@ -52,9 +50,21 @@ export default function RegistrationModal({ modalIsOpen, closeModal }) {
         username,
         email,
         createdAt: new Date().toISOString(),
+        role: 'User',
       });
       toast.success('You signed in sucsessfuly');
-      dispatch(login({ user }));
+      console.log('DISPATCH DATA', {
+        uid: user.uid,
+        email: user.email,
+      });
+
+      dispatch(
+        login({
+          uid: user.uid,
+          email: user.email,
+        })
+      );
+
       actions.resetForm();
       handleModalClose();
     } catch (error) {
@@ -106,7 +116,7 @@ export default function RegistrationModal({ modalIsOpen, closeModal }) {
         >
           {({ isSubmitting }) => (
             <Form>
-              <label>
+              <label className={css.fieldWrapper}>
                 <Field
                   type="text"
                   name="username"
@@ -119,7 +129,7 @@ export default function RegistrationModal({ modalIsOpen, closeModal }) {
                   className={css.error}
                 />
               </label>
-              <label>
+              <label className={css.fieldWrapper}>
                 <Field
                   type="email"
                   name="email"
@@ -132,7 +142,7 @@ export default function RegistrationModal({ modalIsOpen, closeModal }) {
                   className={css.error}
                 />
               </label>
-              <label className={css.passwordWrapper}>
+              <label className={css.fieldWrapper}>
                 <Field
                   type={showPassword ? 'text' : 'password'}
                   name="password"
@@ -157,7 +167,7 @@ export default function RegistrationModal({ modalIsOpen, closeModal }) {
                   className={css.error}
                 />
               </label>
-              <label className={css.passwordRepWrapper}>
+              <label className={css.fieldWrapper}>
                 <Field
                   type={showPassword ? 'text' : 'password'}
                   name="passwordRep"

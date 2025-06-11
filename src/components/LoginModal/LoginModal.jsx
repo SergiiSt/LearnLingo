@@ -46,15 +46,20 @@ export default function LoginModal({ modalIsOpen, closeModal }) {
         password
       );
       const user = userCredential.user;
+
       const cleanUser = {
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        emailVerified: user.emailVerified,
-        photoURL: user.photoURL,
+        uid: user?.uid || '',
+        email: user?.email || '',
       };
+
+      if (!cleanUser.uid || !cleanUser.email) {
+        toast.error('Invalid user data received from Firebase');
+        return;
+      }
       toast.success('You signed in sucsessfuly');
-      dispatch(login({ user: cleanUser }));
+
+      dispatch(login(cleanUser));
+
       actions.resetForm();
       closeModal();
     } catch (error) {
@@ -96,7 +101,7 @@ export default function LoginModal({ modalIsOpen, closeModal }) {
         >
           {({ isSubmitting }) => (
             <Form>
-              <label>
+              <label className={css.label}>
                 <Field
                   type="email"
                   name="email"
@@ -109,7 +114,7 @@ export default function LoginModal({ modalIsOpen, closeModal }) {
                   className={css.error}
                 />
               </label>
-              <label className={css.passwordWrapper}>
+              <label className={css.label}>
                 <Field
                   type={showPassword ? 'text' : 'password'}
                   name="password"
