@@ -6,14 +6,13 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from '../src/components/Header/Header';
 const HomePage = lazy(() => import('../src/pages/HomePage/HomePage'));
-// const Favorites = lazy(() => import('../src/pages/Favorites/Favorites'));
 const Teachers = lazy(() => import('../src/pages/Teachers/Teachers'));
 const AdminPage = lazy(() => import('../src/pages/AdminPage/AdminPage'));
-// import Teachers from './pages/Teachers/Teachers';
 import Loader from './components/Loader/Loader';
 import { Toaster } from 'react-hot-toast';
 import './App.css';
 import { useSelector } from 'react-redux';
+import UsersList from './components/UsersList/UsersList';
 
 function App() {
   const [authReady, setAuthReady] = useState(false);
@@ -48,7 +47,9 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/teachers" element={<Teachers />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin" element={<AdminPage />}>
+            <Route path="users" element={<UsersList />} />
+          </Route>
         </Routes>
       </Suspense>
     </>

@@ -53,10 +53,10 @@ export default function RegistrationModal({ modalIsOpen, closeModal }) {
         role: 'User',
       });
       toast.success('You signed in sucsessfuly');
-      console.log('DISPATCH DATA', {
-        uid: user.uid,
-        email: user.email,
-      });
+      // console.log('DISPATCH DATA', {
+      //   uid: user.uid,
+      //   email: user.email,
+      // });
 
       dispatch(
         login({

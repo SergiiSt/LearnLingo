@@ -72,16 +72,13 @@ export default function Header() {
       })
       .catch(error => {
         console.log(error);
-      })
-      .catch(error => {
-        console.log(error);
       });
   };
 
   return (
     <header className={css.header}>
       <div className={`${css.headerWrap} container`}>
-        <section className={css.geaderLogoWrap}>
+        <section className={css.headerLogoWrap}>
           <NavLink to="/" className={css.headerLink}>
             <img
               src={LearnLingoLogo}
